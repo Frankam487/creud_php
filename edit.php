@@ -1,19 +1,24 @@
 <?php
-include "./db_config.php";
+include "db_config.php";
 if(isset($_POST['submit'])){
-  $fistName = $_POST['first_name'];
+  $id = $_GET['id'];
+  $firstName = $_POST['first_name'];
   $lastName = $_POST['last_name'];
   $email = $_POST['email'];
   $gender = $_POST['gender'];
   
-}
-  $sql = "INSERT INTO `employer`(`id`, `first_name`, `last_name`, `email`, `gender`)VALUES(NULL, '$fistName', '$lastName', '$email', '$gender')";
-$result = mysqli_query($conn, $sql);
-if ($result) {
-  header("Location: index.php?msg=New record created successfully ");
-echo "ok";
-} else {
-  echo "failed: " . mysqli_error($conn);
+
+  $sql = "UPDATE `employer` SET  `first_name`='$firstName',`last_name`='$lastName',`email`='$email',`gender`='$gender' WHERE id=$id";
+  
+  $result = mysqli_query($conn, $sql);
+  if ($result) {
+    header("Location: index.php?msg=Donnees modifiees!! ");
+    echo "ok";
+  }  
+  else
+   {
+    echo "failed: " . mysqli_error($conn);
+  }
 }
 ?>
 
@@ -26,6 +31,7 @@ echo "ok";
 <link rel="stylesheet" href="style.css">
   <title>add task</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   

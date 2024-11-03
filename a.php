@@ -15,14 +15,13 @@ if(isset($_POST['submit'])){
       echo "Tous les champs doivent etre remplis!!";
     } else {
       
-      header("Location: index.php?msg=Employé Ajouté avec succès ");
+      header("Location: add_new.php?msg=New record created successfully ");
     }
-    
     
   } 
    else {
     echo "failed: " . mysqli_error($conn);
- 
+    echo "no";
   }
 }
 ?>
